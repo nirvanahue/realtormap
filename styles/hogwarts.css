@@ -1,0 +1,184 @@
+/* Hogwarts House Colors */
+:root {
+  --gryffindor-red: #740001;
+  --gryffindor-gold: #D3A625;
+  --slytherin-green: #1A472A;
+  --slytherin-silver: #5D5D5D;
+  --ravenclaw-blue: #0E1A40;
+  --ravenclaw-bronze: #946B2D;
+  --hufflepuff-yellow: #ECB939;
+  --hufflepuff-black: #372E29;
+  
+  --parchment-bg: #F4F1E8;
+  --parchment-border: #D4C4A8;
+  --magical-glow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* House-specific classes */
+.house-gryffindor {
+  background: linear-gradient(135deg, var(--gryffindor-red), var(--gryffindor-gold));
+  color: white;
+}
+
+.house-slytherin {
+  background: linear-gradient(135deg, var(--slytherin-green), var(--slytherin-silver));
+  color: white;
+}
+
+.house-ravenclaw {
+  background: linear-gradient(135deg, var(--ravenclaw-blue), var(--ravenclaw-bronze));
+  color: white;
+}
+
+.house-hufflepuff {
+  background: linear-gradient(135deg, var(--hufflepuff-yellow), var(--hufflepuff-black));
+  color: white;
+}
+
+/* Parchment theme */
+.parchment-bg {
+  background-color: var(--parchment-bg);
+  background-image: 
+    linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+    linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
+}
+
+.parchment-card {
+  background: var(--parchment-bg);
+  border: 2px solid var(--parchment-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+}
+
+/* Magical effects */
+.magical-glow {
+  box-shadow: var(--magical-glow);
+  transition: box-shadow 0.3s ease;
+}
+
+.magical-glow:hover {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.sparkle {
+  position: relative;
+  overflow: hidden;
+}
+
+.sparkle::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 215, 0, 0.1) 50%,
+    transparent 70%
+  );
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* House crests */
+.house-crest {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  background-size: cover;
+  background-position: center;
+}
+
+.crest-gryffindor {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23740001"/><path d="M30 40 L50 20 L70 40 L60 60 L40 60 Z" fill="%23D3A625"/></svg>');
+}
+
+.crest-slytherin {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231A472A"/><path d="M30 30 Q50 50 70 30 Q50 70 30 30" fill="%235D5D5D"/></svg>');
+}
+
+.crest-ravenclaw {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%230E1A40"/><path d="M40 30 L50 20 L60 30 L55 50 L45 50 Z" fill="%23946B2D"/></svg>');
+}
+
+.crest-hufflepuff {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ECB939"/><path d="M35 35 L65 35 L65 65 L35 65 Z" fill="%23372E29"/></svg>');
+}
+
+/* Spell buttons */
+.spell-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.spell-lumos {
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  color: #000;
+}
+
+.spell-nox {
+  background: linear-gradient(45deg, #2C3E50, #34495E);
+  color: white;
+}
+
+.spell-evanesco {
+  background: linear-gradient(45deg, #E74C3C, #C0392B);
+  color: white;
+}
+
+.spell-alohomora {
+  background: linear-gradient(45deg, #3498DB, #2980B9);
+  color: white;
+}
+
+.spell-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Map styling */
+.map-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom map style for parchment theme */
+.parchment-map {
+  filter: sepia(0.3) brightness(1.1) contrast(1.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .parchment-card {
+    margin: 5px;
+    padding: 15px;
+  }
+  
+  .house-crest {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .spell-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+} 
