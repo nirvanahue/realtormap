@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,15 +11,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Wand2, Upload, MapPin } from "lucide-react";
 
-const mintSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  price: z.string().min(1, "Price is required"),
-  address: z.string().min(1, "Address is required"),
-  desc: z.string().min(10, "Description must be at least 10 characters"),
-  house: z.string().min(1, "House is required"),
-});
-
-type MintFormData = z.infer<typeof mintSchema>;
+type MintFormData = {
+  title: string;
+  price: string;
+  address: string;
+  desc: string;
+  house: string;
+};
 
 export default function MintPage() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -34,9 +30,7 @@ export default function MintPage() {
     setValue,
     watch,
     formState: { errors },
-  } = useForm<MintFormData>({
-    resolver: zodResolver(mintSchema),
-  });
+  } = useForm<MintFormData>();
 
   const watchedTitle = watch("title");
   const watchedPrice = watch("price");
@@ -168,10 +162,7 @@ Make it enchanting and magical, mentioning magical features, nearby magical loca
                     {...register("title")}
                     placeholder="Enchanted Cottage"
                     className="parchment-bg"
-                  />
-                  {errors.title && (
-                    <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
-                  )}
+                                  />
                 </div>
 
                 <div>
@@ -181,10 +172,7 @@ Make it enchanting and magical, mentioning magical features, nearby magical loca
                     type="number"
                     placeholder="1000"
                     className="parchment-bg"
-                  />
-                  {errors.price && (
-                    <p className="text-red-500 text-sm mt-1">{errors.price.message}</p>
-                  )}
+                                  />
                 </div>
               </div>
 
@@ -251,9 +239,6 @@ Make it enchanting and magical, mentioning magical features, nearby magical loca
                     </SelectItem>
                   </SelectContent>
                 </Select>
-                {errors.house && (
-                  <p className="text-red-500 text-sm mt-1">{errors.house.message}</p>
-                )}
               </div>
 
               {/* Description */}
@@ -282,9 +267,6 @@ Make it enchanting and magical, mentioning magical features, nearby magical loca
                   rows={4}
                   className="parchment-bg"
                 />
-                {errors.desc && (
-                  <p className="text-red-500 text-sm mt-1">{errors.desc.message}</p>
-                )}
               </div>
 
               {/* Image Upload */}
